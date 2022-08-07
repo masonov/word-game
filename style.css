@@ -1,0 +1,201 @@
+body {
+	font-family: Clear Sans,Helvetica Neue,Arial,sans-serif;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+/*    background: url("1.webp");
+    background: url("2.webp");
+    background: url("3.webp");
+    background: url("4.webp");
+    background: url("5.webp");
+    background: url("6.webp");
+    background: url("7.webp");*/
+    background: url('11.jpg');
+    background: url('12.jpg');
+    background: url('13.jpg');
+    background: url('14.jpg');
+    background: url('15.jpg');
+    background: url('16.jpg');
+    background: url('17.jpg');
+    background: url('20.jpg');
+    background: url('21.jpg');
+    background: url('22.jpg');
+    background: url('23.jpg');
+    background: url('24.jpg');
+    background: url('25.jpg');
+    background: url('26.jpg');
+}
+
+body>div {
+    border: 10px solid white;
+    background: rgba(0,0,0,0.7);
+    padding: 8px;
+}
+
+.words .row div {
+    background: white;
+}
+
+header {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+header h1 {
+    margin: 4px 0;
+    font-size: 36px;
+    text-transform: uppercase;
+    color: white;
+}
+
+#keyboard {
+	margin: 30px 0px 0;
+    user-select: none;	
+}
+
+#keyboard .row {
+	display: flex;
+    width: 100%;
+    margin: 0 auto 8px;
+    touch-action: manipulation;
+}
+
+button {
+	font-family: inherit;
+    font-weight: 700;
+    border: 0;
+    padding: 0;
+    margin: 0 6px 0 0;
+    height: 58px;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    background-color: #d3d6da;
+    color: #1a1a1b;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: rgba(0,0,0,.3);
+    transition: all .2s 1.5s;
+}
+
+.button {
+    font-family: inherit;
+    font-weight: 700;
+    border: 0;
+    padding: 0;
+    margin: 0 6px 0 0;
+    height: 58px;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    background-color: #d3d6da;
+    color: #1a1a1b;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: rgba(0,0,0,.3);
+    transition: all .2s 1.5s;
+}
+
+#board {
+    display: grid;
+    grid-template-rows: repeat(6,1fr);
+    grid-gap: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    --height: min(420px, calc(var(--vh, 100vh) - 310px));
+    height: var(--height);
+    width: min(350px,calc(var(--height) / 6 * 5));
+    margin: 0 auto;
+    background: white;
+}
+
+#board .row {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-gap: 5px;
+}
+
+.tile {
+    width: 100%;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: 700;
+    vertical-align: middle;
+    text-transform: uppercase;
+    user-select: none;
+    position: relative;
+}
+
+.tile .front {
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform .6s;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.tile .front {
+    border: 2px solid #d3d6da;
+}
+
+.tile .back {
+    transform: rotateX(180deg);
+}
+
+.temp {
+    text-transform: uppercase;
+}
+
+.images {
+    display: flex;
+    margin: 80px auto;
+    justify-content: space-between;
+}
+
+.images div {
+    width: 15%;
+    border: 8px solid #d4d4d4;
+    background: white;
+}
+
+.images img {
+    width: 100%;
+}
+
+.words .row {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.words .row div {
+    border: 2px solid #d3d6da;
+    width: 12%;
+    height: 30px;
+    height: 60px;
+    /*flex-grow: 1;*/
+    margin-right: 3px;
+    font-size: 30px;
+    font-weight: bold;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.words .row div:last-child {
+    /*margin-right: unset;*/
+}
