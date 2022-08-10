@@ -3,33 +3,23 @@ body {
     text-align: center;
     max-width: 500px;
     margin: 0 auto;
-/*    background: url("1.webp");
-    background: url("2.webp");
-    background: url("3.webp");
-    background: url("4.webp");
-    background: url("5.webp");
-    background: url("6.webp");
-    background: url("7.webp");*/
-    background: url('11.jpg');
-    background: url('12.jpg');
-    background: url('13.jpg');
-    background: url('14.jpg');
-    background: url('15.jpg');
-    background: url('16.jpg');
-    background: url('17.jpg');
-    background: url('20.jpg');
-    background: url('21.jpg');
-    background: url('22.jpg');
-    background: url('23.jpg');
-    background: url('24.jpg');
-    background: url('25.jpg');
-    background: url('26.jpg');
+    background: url('img/background.jpg');
+    background-size: cover;
 }
 
-body>div {
+.clean-layout {
+    background: white;
+    border-radius: 20px;
+}
+
+body .cont {
     border: 10px solid white;
-    /*background: rgba(0,0,0,0.7);*/
-    padding: 8px;
+    background: rgb(228 225 152 / 13%);
+    padding: 20px;
+    box-shadow: 0px 0px 12px 2px #d3d6da;
+    margin-top: 30px;
+    border-radius: 20px;
+    border: 2px solid #d3d6da;
 }
 
 .words .row div {
@@ -79,6 +69,7 @@ button {
     align-items: center;
     text-transform: uppercase;
     -webkit-tap-highlight-color: rgba(0,0,0,.3);
+    box-shadow: 0px 0px 2px 0px;
 }
 
 .images {
@@ -92,10 +83,14 @@ button {
     /*border: 8px solid #d4d4d4;*/
     border: 8px solid #ffffff;
     background: white;
+    box-shadow: 0px 0px 3px 1px #d3d6da;
+    border-radius: 10px;
+    border: 4px solid #d3d6da;
 }
 
 .images img {
     width: 100%;
+    border-radius: 10px;
 }
 
 .words .row {
