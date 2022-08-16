@@ -1,6 +1,7 @@
 let letters = document.querySelectorAll('.letters button');
 let wordRows = document.querySelectorAll('.words .row');
 let images = document.querySelectorAll('.images img');
+let message = document.querySelector('.message p');
 
 let wordsArr = ['aaaaaa', 'bbbbbbb', 'nnnnn'];
 
@@ -47,13 +48,11 @@ function addLetter(targetElem) {
 					currentRow++; // меняем номер строки на следующий
 				} else {
 					changeRow('white', '#FF3333'); // если слово не подходит то меняем цвет клеток на красный
+					message.innerText = 'ответ неверный'; // и выводим окно 
 
-					setTimeout(function() {
-						alert('ответ неверный'); // и выводим окно 
-					}, 200);
-
-					setTimeout(function() {
-						changeRow('black', '', true); // ждем секунду чтобы наш код не сработал раньше открытия окна
+					setTimeout(function() { // ждем секунду
+						changeRow('black', '', true);
+						message.innerText = '';  
 					}, 1000);
 				}
 

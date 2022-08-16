@@ -117,3 +117,8 @@ button {
 .words .row div:last-child {
     /*margin-right: unset;*/
 }
+
+.message p {
+    font-size: 24px;
+    color: red;
+}
