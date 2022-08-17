@@ -2,10 +2,12 @@ let letters = document.querySelectorAll('.letters button');
 let wordRows = document.querySelectorAll('.words .row');
 let images = document.querySelectorAll('.images img');
 let message = document.querySelector('.message p');
+console.dir(images)
 
-let wordsArr = ['aaaaaa', 'bbbbbbb', 'nnnnn'];
+let wordsArr = ['ацгуы', 'аҼада', 'апопугаи', 'ауаса', 'акӘты'];
 
 let currentRow = 0; // какая строка заполняется буквами, меняется при нажатии на изображения
+let imagesCount = 0;
 
 for (let i = 0; i < images.length; i++) {
 	images[i].onclick = function() {
@@ -45,7 +47,16 @@ function addLetter(targetElem) {
 					.toLowerCase()) ) { // проверяем содержится ли наше собранное слово в списке верных ответов
 
 					changeRow('white', '#33CC33'); // если слово подходит то меняем цвет клеток на зеленый
-					currentRow++; // меняем номер строки на следующий
+
+					setTimeout(function() {
+						wordRows[currentRow].style.display = 'none';
+						images[imagesCount].parentElement.style.display = 'none';
+						currentRow++; // меняем номер строки на следующий
+						imagesCount++; // меняем номер строки на следующий
+						wordRows[currentRow].style.display = 'flex';
+						images[imagesCount].parentElement.style.display = 'flex';
+					}, 2000)
+
 				} else {
 					changeRow('white', '#FF3333'); // если слово не подходит то меняем цвет клеток на красный
 					message.innerText = 'ответ неверный'; // и выводим окно 
