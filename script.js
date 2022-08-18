@@ -4,7 +4,7 @@ let images = document.querySelectorAll('.images img');
 let message = document.querySelector('.message p');
 console.dir(images)
 
-let wordsArr = ['ацгуы', 'аҼада', 'апопугаи', 'ауаса', 'акӘты'];
+let wordsArr = ['ацгәы', 'аҽада', 'апарпар', 'ауаса', 'акәты'];
 
 let currentRow = 0; // какая строка заполняется буквами, меняется при нажатии на изображения
 let imagesCount = 0;
