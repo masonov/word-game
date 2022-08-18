@@ -3,7 +3,7 @@ let wordRows = document.querySelectorAll('.words .row');
 let images = document.querySelectorAll('.images img');
 let message = document.querySelector('.message p');
 
-let wordsArr = ['aaaaaa', 'bbbbbbb', 'nnnnn'];
+let wordsArr = ['ацгәы', 'аҽада', 'ауаса', 'акәты', 'ажьа'];
 
 let currentRow = 0; // какая строка заполняется буквами, меняется при нажатии на изображения
 
