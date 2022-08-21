@@ -1,75 +1,84 @@
 let letters = document.querySelectorAll('.letters button');
-let wordRows = document.querySelectorAll('.words .row');
-let images = document.querySelectorAll('.images img');
+let wordF = document.querySelector('.words .front');
+let imgDiv = document.querySelector('.images div');
 let message = document.querySelector('.message p');
-console.dir(images)
 
-let wordsArr = ['ацгәы', 'аҽада', 'апарпар', 'ауаса', 'акәты'];
+// imgDiv.style.height = '416px';
 
-let currentRow = 0; // какая строка заполняется буквами, меняется при нажатии на изображения
-let imagesCount = 0;
+let data = [
+	['ацгәы', '1.png'],
+	['аҽада', '2.png'],
+	['апарпар', '3.png'],
+	['ауаса', '4.png'],
+	['акәты', '5.png'],
+];
 
-for (let i = 0; i < images.length; i++) {
-	images[i].onclick = function() {
-		currentRow = this.dataset.num; // добавляем к изображениям обрабочик клика, при котором меняется номер строки в которую вводим слово
+let current = 0;
 
+function generate() {
+	if (wordF.children.length != 0) {
+		imgDiv.children[0].style.display = 'none';
+		imgDiv.innerHTML = '';
+		wordF.innerHTML = '';
+		current++;
+	}
+
+	let img = document.createElement('img');
+	img.setAttribute('src', 'img/' + data[current][1]);
+	imgDiv.append(img);
+
+	for(let i = 0; i < data[current][0].length; i++) {
+		let div = document.createElement('div');
+		wordF.append(div);
 	}
 }
+
+generate();
 
 for (let i = 0; i < letters.length; i++) {
 	letters[i].onclick = function() {
-		addLetter(this); // при нажатии на буквы добавляем букву в поле с помощью функции addLetter(). В функцию передаем обьект на который нажали
+		add(this);
 	}
 }
 
-function changeRow(color, backColor, reset = false) {
-	let currentRowSubElems = wordRows[currentRow].querySelectorAll('div'); // находим все клетки текущей строки
-	for (let i = 0; i < currentRowSubElems.length; i++) { // перебираем все клетки и каждую окрашиваем в зеленый цвет
-		currentRowSubElems[i].style.background = backColor;
-		currentRowSubElems[i].style.color = color;
-		if (reset) {
-			currentRowSubElems[i].innerText = '';
+function add(letter) {
+	for (let i = 0; i < data[current][0].length; i++) {
+		if (wordF.children[i].innerText == '') {
+			wordF.children[i].innerText = letter.innerText;
+			if (i == wordF.children.length - 1) {
+				done();
+			}
+			break;
 		}
 	}
 }
 
-function addLetter(targetElem) {
-	for (let i = 0; i < wordRows[currentRow].children.length; i++) { // перебираем все строки где вводятся слова
+function done() {
+	let divs = wordF.querySelectorAll('div');
+	if (wordF.innerText.split('\n').join("").toLowerCase() == data[current][0]) {
+		change('green', 'white');
+		setTimeout(function() {
+			generate();
+		}, 2000)
+	} else {
+		change('red', 'white');
+		setTimeout(function() {
+			reset();
+		}, 2000)
+	}
 
-		if (wordRows[currentRow].children[i].innerText == '') { // перебираем все клетки строки на пустое значение
-			wordRows[currentRow].children[i].innerText = targetElem.innerText;  // если значение пустое то добавляем букву в текущую клетку
+	function change(back, color) {
+		for (let i = 0; i < divs.length; i++) {
+			divs[i].style.background = back;
+			divs[i].style.color = color;
+		}
+	}
 
-			if (i == wordRows[currentRow].children.length - 1) { // если цикл с перебором клеток дошел до номера последней клетки
-
-				if( wordsArr.includes(wordRows[currentRow].innerText
-					.split('\n')
-					.join("")
-					.toLowerCase()) ) { // проверяем содержится ли наше собранное слово в списке верных ответов
-
-					changeRow('white', '#33CC33'); // если слово подходит то меняем цвет клеток на зеленый
-
-					setTimeout(function() {
-						wordRows[currentRow].style.display = 'none';
-						images[imagesCount].parentElement.style.display = 'none';
-						currentRow++; // меняем номер строки на следующий
-						imagesCount++; // меняем номер строки на следующий
-						wordRows[currentRow].style.display = 'flex';
-						images[imagesCount].parentElement.style.display = 'flex';
-					}, 2000)
-
-				} else {
-					changeRow('white', '#FF3333'); // если слово не подходит то меняем цвет клеток на красный
-					message.innerText = 'ответ неверный'; // и выводим окно 
-
-					setTimeout(function() { // ждем секунду
-						changeRow('black', '', true);
-						message.innerText = '';  
-					}, 1000);
-				}
-
-			}
-
-			break;
+	function reset() {
+		for (let i = 0; i < divs.length; i++) {
+			divs[i].innerText = '';
+			divs[i].style.background = '';
+			divs[i].style.color = 'black';
 		}
 	}
 }
