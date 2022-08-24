@@ -1,36 +1,53 @@
 let letters = document.querySelectorAll('.letters button');
-let wordF = document.querySelector('.words .front');
-let imgDiv = document.querySelector('.images div');
+let field = document.querySelector('.words .front');
+let img = document.querySelector('.images div img');
 let message = document.querySelector('.message p');
-
-// imgDiv.style.height = '416px';
-
-let data = [
-	['ацгәы', '1.png'],
-	['аҽада', '2.png'],
-	['апарпар', '3.png'],
-	['ауаса', '4.png'],
-	['акәты', '5.png'],
-];
+let result = document.querySelector('.result p');
 
 let current = 0;
+let resultCount = 0;
+let data = [
+	['ақәыџьма', 'ALMA-07.png'],
+	['ацгәы', 'адиле-08.png'],
+	['аҽада', 'амина-07.png'],
+	['амшә', 'ялса-08.png'],
+	['аԥынҵатәыҩа', 'Артём-08.png'],
+	['апарпар', 'Артём-09.png'],
+	['ажьа', 'Щазина-07.png'],
+	['ажә', 'Щазина-08.png'],
+	['ала', 'эля-07.png'],
+	['аҳәа', 'эля-08.png'],
+	['ауаса', 'ялса-07.png'],
+	['арбаӷь', 'ялса-09.png'],
+];
+
+function dels() {
+	for (let i = 0; i < field.children.length; i++) {
+		field.children[i].onclick = function() {
+			this.innerText = '';
+			console.dir('true')
+		}
+	}
+}
 
 function generate() {
-	if (wordF.children.length != 0) {
-		imgDiv.children[0].style.display = 'none';
-		imgDiv.innerHTML = '';
-		wordF.innerHTML = '';
+	if (field.children.length != 0) {
+		field.innerHTML = '';
 		current++;
+		img.setAttribute('src', 'img/animals/' + data[current][1]);
 	}
-
-	let img = document.createElement('img');
-	img.setAttribute('src', 'img/' + data[current][1]);
-	imgDiv.append(img);
 
 	for(let i = 0; i < data[current][0].length; i++) {
 		let div = document.createElement('div');
-		wordF.append(div);
+		field.append(div);
 	}
+
+	sumResult();
+	dels();
+}
+
+function sumResult() {
+	result.innerText = "Ииашаны рҭак ҟацоуп: " + resultCount + ' / ' + data.length
 }
 
 generate();
@@ -43,9 +60,9 @@ for (let i = 0; i < letters.length; i++) {
 
 function add(letter) {
 	for (let i = 0; i < data[current][0].length; i++) {
-		if (wordF.children[i].innerText == '') {
-			wordF.children[i].innerText = letter.innerText;
-			if (i == wordF.children.length - 1) {
+		if (field.children[i].innerText == '') {
+			field.children[i].innerText = letter.innerText;
+			if (i == field.children.length - 1) {
 				done();
 			}
 			break;
@@ -54,17 +71,27 @@ function add(letter) {
 }
 
 function done() {
-	let divs = wordF.querySelectorAll('div');
-	if (wordF.innerText.split('\n').join("").toLowerCase() == data[current][0]) {
-		change('green', 'white');
+	let divs = field.querySelectorAll('div');
+	if (field.innerText.split('\n').join("").toLowerCase() == data[current][0]) {
+		change('#33CC33', 'white');
 		setTimeout(function() {
-			generate();
-		}, 2000)
+			resultCount++;
+			if (current == data.length - 1) {
+				finish();
+			} else {
+				generate();
+			}
+		}, 1000)
 	} else {
-		change('red', 'white');
+		change('#FF3333', 'white');
 		setTimeout(function() {
-			reset();
-		}, 2000)
+			// reset();
+			if (current == data.length - 1) {
+				finish();
+			} else {
+				generate();
+			}
+		}, 1000)
 	}
 
 	function change(back, color) {
@@ -81,4 +108,11 @@ function done() {
 			divs[i].style.color = 'black';
 		}
 	}
+}
+
+function finish() {
+	img.parentElement.parentElement.remove();
+	field.remove();
+	result.classList.add('finish');
+	sumResult();
 }
